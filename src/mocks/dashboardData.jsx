@@ -34,7 +34,8 @@ export const topStations = [
   { name: 'Tehsil B', score: 90 },
   { name: 'Tehsil C', score: 68 },
   { name: 'Tehsil D', score: 65 },
-  { name: 'Tehsil E', score: 63 }
+  { name: 'Tehsil E', score: 63 },
+    { name: 'Tehsil F', score: 67 }
 ]
 
 export const alerts = [

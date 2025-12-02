@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, GeoJSON, Marker } from "react-leaflet";
 import L from "leaflet";
 import punjabGeoJson from "../../assets/geojson/punjab_districts.json";
 import "leaflet/dist/leaflet.css";
+import { Typography } from "@mui/material";
 import { stations } from "../../mocks/stations";
 import "./KPICard.css"
 // Custom marker icon (circle)
@@ -43,8 +44,13 @@ export default function MapCard({ onDistrictClick }) {
 
   return (
     <div className="relative bg-white shadow-md rounded-lg p-4 h-full flex flex-col">
-      <h3 className="text-sm font-medium mb-3">Punjab Districts Map</h3>
-
+   
+   <Typography
+        
+        sx={{ color: "#4a5971", mb: 2, fontWeight: 700 }}
+      >
+        Punjab Districts Map
+      </Typography>
       <div className="flex-1 rounded-lg overflow-hidden relative">
         <MapContainer
           ref={mapRef}
@@ -75,55 +81,51 @@ export default function MapCard({ onDistrictClick }) {
           ))}
         </MapContainer>
 
-  {hoverStation && (
-  <div
-    style={{
-      position: "absolute",
-      top: Math.min(mousePos.y + 15, window.innerHeight - 330), // ensure it doesn't overflow bottom
-      left: Math.min(mousePos.x + 15, window.innerWidth - 250), // ensure it doesn't overflow right
-      width: "240px",
-      maxHeight: "320px",
-      background: "linear-gradient(145deg, #ffffff, #f3f4f6)",
-      borderRadius: "12px",
-      padding: "12px",
-      boxShadow: "0 4px 15px rgba(0,0,0,0.25)",
-      zIndex: 1000,
-      fontSize: "12px",
-      overflowY: "auto",
-      pointerEvents: "none",
-      transition: "all 0.2s ease-in-out",
-      animation: "fadeIn 0.25s ease-in-out",
-    }}
-    className="hover-box"
-  >
-    <div className="flex items-center mb-1">
-  
-      <strong style={{ fontSize: "14px", color: "#111827" }}>{hoverStation.name}</strong>
-    </div>
+        {hoverStation && (
+          <div
+            style={{
+              position: "absolute",
+              top: Math.min(mousePos.y + 15, window.innerHeight - 330), // ensure it doesn't overflow bottom
+              left: Math.min(mousePos.x + 15, window.innerWidth - 250), // ensure it doesn't overflow right
+              width: "240px",
+              maxHeight: "320px",
+              background: "linear-gradient(145deg, #ffffff, #f3f4f6)",
+              borderRadius: "12px",
+              padding: "12px",
+              boxShadow: "0 4px 15px rgba(0,0,0,0.25)",
+              zIndex: 1000,
+              fontSize: "12px",
+              overflowY: "auto",
+              pointerEvents: "none",
+              transition: "all 0.2s ease-in-out",
+              animation: "fadeIn 0.25s ease-in-out",
+            }}
+            className="hover-box"
+          >
+            <div className="flex items-center mb-1">
 
-    <div className="space-y-1 text-gray-700">
-      <div><strong>Address:</strong> {hoverStation.address}</div>
-    
-      
-      <div className="flex justify-between"><div><strong>Total EO:</strong> {hoverStation.totalEO}</div><div><strong>Total IO:</strong> {hoverStation.totalIO}</div></div>
-    
-    
-            <div className="flex justify-between"><div><strong>Total Requisitions:</strong>{hoverStation.totalRequisitions}</div><div><strong>Total Strength:</strong> {hoverStation.totalStrength}</div></div>
+              <strong style={{ fontSize: "14px", color: "#111827" }}>{hoverStation.name}</strong>
+            </div>
 
-       <div className="flex justify-between"><div><strong>Total Vehicles:</strong>{hoverStation.totalVehicles}</div><div><strong>Total HR:</strong>{hoverStation.totalHR}</div></div>
-      
-      <div><strong>Total Inventory:</strong> {hoverStation.totalInventory}</div>
-    </div>
-  </div>
-)}
+            <div className="space-y-1 text-gray-700">
+              <div><strong>Address:</strong> {hoverStation.address}</div>
 
 
+              <div className="flex justify-between"><div><strong>Total EO:</strong> {hoverStation.totalEO}</div><div><strong>Total IO:</strong> {hoverStation.totalIO}</div></div>
 
 
-      </div>
+              <div className="flex justify-between"><div><strong>Total Requisitions:</strong>{hoverStation.totalRequisitions}</div><div><strong>Total Strength:</strong> {hoverStation.totalStrength}</div></div>
 
-      <div className="mt-2 text-xs text-gray-500">
-        Hover over a district or station to see details
+              <div className="flex justify-between"><div><strong>Total Vehicles:</strong>{hoverStation.totalVehicles}</div><div><strong>Total HR:</strong>{hoverStation.totalHR}</div></div>
+
+              <div><strong>Total Inventory:</strong> {hoverStation.totalInventory}</div>
+            </div>
+          </div>
+        )}
+
+
+
+
       </div>
     </div>
   );

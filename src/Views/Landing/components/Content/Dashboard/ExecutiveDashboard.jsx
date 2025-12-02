@@ -1,8 +1,5 @@
 
 
-
-
-
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import KPICard from '../../../../../components/KPICard/KPICard';
@@ -15,25 +12,59 @@ import MapCard from '../../../../../components/KPICard/MapCard';
 import SalesOverTime from '../../../../../components/charts/SalesOverTime';
 import SalesVsRefunds from '../../../../../components/charts/SalesVsRefunds';
 
-import { lineSeries, funnelStages, attendance, topStations, alerts } from '../../../../../mocks/dashboardData';
+import {
+  lineSeries,
+  funnelStages,
+  attendance,
+  topStations,
+  alerts,
+
+} from '../../../../../mocks/dashboardData';
+import FieldStaffDevelopmenet from '../../FieldStaffDevelopmenet/FieldStaffDevelopmenet';
+import FieldStaffDeploymentCard from '../../FieldStaffDevelopmenet/FieldStaffDeploymentCard';
+import InventoryAssetsCard from '../ESInoventory/InventoryAssetsCard';
+import ChartCard from '../../../../../components/charts/ChartCard';
+import BeautifulLineChart from '../../../../../components/charts/BeautifulLineChart';
+import BeautifulBarChart from '../../../../../components/charts/BeautifulBarChart';
+import BeautifulDonutChart from '../../../../../components/charts/BeautifulDonutChart';
+import HRMISChart from '../../HRMS/HRMISChart.JSX';
+import FinanceChart from '../../Financel/FinanceChart';
+import ActivityChart from '../../ActivityManagment/ActivityChart';
+import LegalChart from '../../Financel/LegalChart';
 
 const kpisData = [
-  { id: 1, label: "Force Requisitions", value: 373, type: "FR", url:"force_requisitions" },
-  { id: 2, label: "Total Stations", value: 125, type: "stations", url:"stations" },
-  { id: 3, label: "Total HR", value: 38, type: "hr", url:"hr" },
-  { id: 4, label: "Total FIR", value: 210, type: "fir", url:"fir" },
-  { id: 5, label: "Total Inventory", value: 18, type: "ims", url:"inventory" },
-  { id: 6, label: "Total Financial", value: 42, type: "TF", url:"financial" },
-  { id: 7, label: "Total Vehicles", value: 125, type: "tv", url:"vehicles" },
-  { id: 8, label: "Total Tenders", value: 38, type: "TT", url:"tenders" },
+  { id: 1, label: "Force Requisitions", value: 373, type: "FR", url: "force_requisitions" },
+  { id: 2, label: "Total Stations", value: 125, type: "stations", url: "stations" },
+  { id: 3, label: "Total HR", value: 38, type: "hr", url: "hr" },
+  { id: 4, label: "Total FIR", value: 210, type: "fir", url: "fir" },
+  { id: 5, label: "Total Inventory", value: 18, type: "ims", url: "inventory" },
+  { id: 6, label: "Total Financial", value: 42, type: "TF", url: "financial" },
+  { id: 7, label: "Total Vehicles", value: 125, type: "tv", url: "vehicles" },
+  { id: 8, label: "Total Tenders", value: 38, type: "TT", url: "tenders" },
+];
+const lineData = [
+  { name: "Jan", value: 30 },
+  { name: "Feb", value: 45 },
+  { name: "Mar", value: 60 },
 ];
 
+const barData = [
+  { name: "Station A", value: 120 },
+  { name: "Station B", value: 80 },
+];
+
+const donutData = [
+  { name: "Admin", value: 300 },
+  { name: "Court", value: 150 },
+  { name: "Self", value: 100 },
+];
 
 export default function ExecutiveDashboard() {
   const navigate = useNavigate();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 bg-[#F9FAFB]">
+
 
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
         {kpisData.map(k => (
@@ -52,16 +83,19 @@ export default function ExecutiveDashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         <div className="md:col-span-6"><MapCard /></div>
-        <div className="md:col-span-6"><DualLineChart data={lineSeries} /></div>
+        <div className="md:col-span-6"><FieldStaffDeploymentCard /></div>
       </div>
 
-      <div className="flex gap-4 items-stretch">
-        <div className="flex-1 bg-white rounded-xl shadow p-4">
-          <TopStationsTable data={topStations} />
-        </div>
-        <div className="flex-1 bg-white rounded-xl shadow p-4">
-          <FunnelChart data={funnelStages} />
-        </div>
+
+
+
+      <div className="flex-1 bg-white rounded-xl shadow p-4 flex justify-center items-center">
+        <InventoryAssetsCard />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <TopStationsTable data={topStations} />
+        <SalesOverTime />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -86,11 +120,29 @@ export default function ExecutiveDashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <SalesOverTime />
-        <SalesVsRefunds />
-      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 ">
 
+        <ChartCard title="Performance Comparison">
+          <BeautifulLineChart data={lineData} />
+        </ChartCard>
+
+        <ChartCard title="Fuel Analytics">
+          <BeautifulBarChart data={barData} />
+        </ChartCard>
+
+        <ChartCard title="Requisition Source Tracking">
+          <BeautifulDonutChart data={donutData} />
+        </ChartCard>
+
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <HRMISChart />
+        <FinanceChart />
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <ActivityChart />
+        <LegalChart />
+      </div>
     </div>
   );
 }
