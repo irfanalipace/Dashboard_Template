@@ -1,0 +1,37 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Lahore" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [74.1, 31.4],
+            [74.2, 31.4],
+            [74.2, 31.5],
+            [74.1, 31.5],
+            [74.1, 31.4]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Faisalabad" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [73.0, 31.3],
+            [73.1, 31.3],
+            [73.1, 31.4],
+            [73.0, 31.4],
+            [73.0, 31.3]
+          ]
+        ]
+      }
+    }
+  ]
+}

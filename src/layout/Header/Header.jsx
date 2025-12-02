@@ -1,33 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaRegBell } from "react-icons/fa6";
 import { IoPersonOutline } from "react-icons/io5";
+import { MdLogout, MdSettings } from "react-icons/md";
 
-
-const Header = () => {
-
-
+const Header = ({ pageTitle = "Dashboard" }) => {
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   return (
-    <>
-      <div className="flex justify-between items-center px-6 py-4">
-        <img src="logo (2).png" alt="" className="w-20" />
-        <div className="flex items-center space-x-2">
-          <div className="relative">
-            <button className="text-white bg-gradient-to-b from-primarycolor to-secondarycolor rounded-full mt-1.5 hover:text-gray-800">
-              <FaRegBell className="text-4xl p-2" />
+    <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md sticky top-0 z-50">
 
-            </button>
-            {/* <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500"></span> */}
-          </div>
-          <div className="flex items-center">
-            <h1 className="bg-gradient-to-b from-primarycolor to-secondarycolor text-white rounded-full"><IoPersonOutline className="text-4xl p-2" /></h1>
-            <span className="ml-2 text-xl font-bold text-primarycolor">My Profile</span>
-          </div>
+      <div className="flex items-center space-x-4">
+        <img src="logo.png" alt="Logo" className="w-14 h-14 object-contain" />
+        <div>
+          <h1 className="text-2xl font-bold text-gray-800">{pageTitle}</h1>
+          <p className="text-sm text-gray-500">Welcome back, Admin!</p>
         </div>
       </div>
 
 
-    </>
+      <div className="flex items-center space-x-6">
+
+        <div className="relative">
+          <button className="text-gray-700 hover:text-gray-900 transition duration-200">
+            <FaRegBell className="text-3xl p-2 rounded-full hover:bg-gray-100" />
+          </button>
+          <span className="absolute top-1 right-1 h-3 w-3 rounded-full bg-red-500 animate-pulse"></span>
+        </div>
+
+        <div className="relative">
+          <button
+            onClick={() => setShowProfileMenu(!showProfileMenu)}
+            className="flex items-center space-x-2 bg-gradient-to-b from-primarycolor to-secondarycolor text-white px-3 py-1.5 rounded-full hover:from-secondarycolor hover:to-primarycolor transition-all duration-300"
+          >
+            <IoPersonOutline className="text-3xl" />
+            <span className="font-semibold">Admin</span>
+          </button>
+
+          {showProfileMenu && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 z-50">
+              <ul className="flex flex-col p-2 space-y-2">
+                <li className="flex items-center px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+                  <MdSettings className="mr-2 text-lg text-gray-600" />
+                  Settings
+                </li>
+                <li className="flex items-center px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+                  <MdLogout className="mr-2 text-lg text-gray-600" />
+                  Logout
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
   );
 };
 

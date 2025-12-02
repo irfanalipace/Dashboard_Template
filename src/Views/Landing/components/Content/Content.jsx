@@ -1,11 +1,12 @@
 import React from "react";
+import ExecutiveDashboard from "./Dashboard/ExecutiveDashboard";
 
 const Content = () => {
  
 
   return (
    <div className="overflow-hidden p-4">
-   Dashboard
+   <ExecutiveDashboard />
    </div>
   );
 };

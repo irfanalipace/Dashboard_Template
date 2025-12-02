@@ -1,41 +1,34 @@
-import { useRoutes, Navigate, useNavigate } from "react-router-dom";
-import Landing from "./Views/Landing/Landing";
-import LandingLayout from "./layout/LandingLayout";
+import { useRoutes } from "react-router-dom";
+import Layout from "./layout/DashboardLayout/Layout";
+import ExecutiveDashboard from "./Views/Landing/components/Content/Dashboard/ExecutiveDashboard";
+import StationsDashboard from "./Views/Landing/components/Content/StationsDashboard/StationsDashboard";
+import HRDashboard from "./Views/Landing/components/Content/HRDashboard/HRDashboard";
+import FIRDashboard from "./Views/Landing/components/Content/firdashboard/FIRDashboard";
+import ForceReqDashboard from "./Views/Landing/components/Content/ForceReqDashboard/ForceReqDashboard";
+import InventoryDashboard from "./Views/Landing/components/Content/InventoryDashboard/InventoryDashboard";
+import FinancialDashboard from "./Views/Landing/components/Content/FinancialDashboard/FinancialDashboard";
+import VehiclesDashboard from "./Views/Landing/components/Content/VehiclesDashboard/VehiclesDashboard";
+import TendersDashboard from "./Views/Landing/components/Content/TendersDashboard/TendersDashboard";
 import Login from "./Views/auth/Login";
 import SignUp from "./Views/auth/SignUp";
-import Layout from "./layout/DashboardLayout/Layout";
-import Settings from "./Views/Settings/Settings";
-import ChatbotBuilder from "./Views/ChatbotBuilder/ChatbotBuilder";
 
 export default function Router() {
-  const isAuthenticated  = false;
-  const navigate=useNavigate()
-
   const element = useRoutes([
-    {
-      path: "/login",
-      element:  <Login />,
-    },
-     {
-      path: "/signup",
-      element:  <SignUp />,
-    },
+    { path: "/login", element: <Login /> },
+    { path: "/signup", element: <SignUp /> },
     {
       path: "/",
       element: <Layout />,
       children: [
-        {
-          index: true,
-          element: <Landing />,
-        },
-          {
-          path:"/settings" ,
-          element: <Settings />,
-        },
-          {
-          path:"/chatbot-builder" ,
-          element: <ChatbotBuilder />,
-        },
+        { index: true, element: <ExecutiveDashboard /> },
+        { path: "dashboard/stations", element: <StationsDashboard /> },
+        { path: "dashboard/hr", element: <HRDashboard /> },
+        { path: "dashboard/fir", element: <FIRDashboard /> },
+        { path: "dashboard/force_requisitions", element: <ForceReqDashboard /> },
+        { path: "dashboard/inventory", element: <InventoryDashboard /> },
+        { path: "dashboard/financial", element: <FinancialDashboard /> },
+        { path: "dashboard/vehicles", element: <VehiclesDashboard /> },
+        { path: "dashboard/tenders", element: <TendersDashboard /> },
       ],
     },
   ]);
