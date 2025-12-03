@@ -90,7 +90,7 @@ const SideBar = ({ collapsed }) => {
     return (
         <div
             className={`
-                flex flex-col h-full bg-gradient-to-b from-primarycolor to-secondarycolor 
+                flex flex-col h-full bg-[#C79A5E]
                 text-white font-barlow transition-all duration-300
                 ${collapsed ? "w-20" : "w-[258px]"}
             `}

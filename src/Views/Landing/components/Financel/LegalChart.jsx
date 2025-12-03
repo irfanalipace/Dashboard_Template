@@ -1,31 +1,70 @@
 import React from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
 import { Typography } from "@mui/material";
+import { Box } from "lucide-react";
 
-const firTrend = [
-  { month: "Jan", registered: 120, disposed: 90 },
-  { month: "Feb", registered: 140, disposed: 105 },
-  { month: "Mar", registered: 160, disposed: 130 },
+// Example data: Utilized vs Non-Utilized Staff with performance score per month
+const personnelTrend = [
+  { month: "Jan", utilized: 85, nonUtilized: 15, performance: 78 },
+  { month: "Feb", utilized: 90, nonUtilized: 10, performance: 82 },
+  { month: "Mar", utilized: 88, nonUtilized: 12, performance: 80 },
+  { month: "Apr", utilized: 92, nonUtilized: 8, performance: 85 },
 ];
 
 export default function LegalChart() {
   return (
-    <div className="bg-white rounded-xl shadow p-4">
-      <Typography className="text-sm font-semibold">
-        Legal & Compliance
+        
+    <div className="bg-white rounded-xl shadow p-4 h-[300px]">
+      <Typography className="text-sm font-semibold mb-2">
+        Workforce Utilization & Performance
       </Typography>
 
-      <div className="h-40 mt-2">
+      <div className="h-55">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={firTrend}>
-            <XAxis dataKey="month" fontSize={10} />
-            <YAxis fontSize={10} />
+          <LineChart data={personnelTrend} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+            <XAxis dataKey="month" fontSize={12} />
+            <YAxis fontSize={12} />
             <Tooltip />
-            <Line type="monotone" dataKey="registered" stroke="#ef4444" strokeWidth={2} />
-            <Line type="monotone" dataKey="disposed" stroke="#10b981" strokeWidth={2} />
+            <Legend verticalAlign="top" height={36} />
+            
+            {/* Utilized Staff */}
+            <Line
+              type="monotone"
+              dataKey="utilized"
+              stroke="#10b981" // green
+              strokeWidth={2}
+              activeDot={{ r: 6 }}
+            />
+
+            {/* Non-Utilized Staff */}
+            <Line
+              type="monotone"
+              dataKey="nonUtilized"
+              stroke="#ef4444" // red
+              strokeWidth={2}
+              strokeDasharray="5 5"
+            />
+
+            {/* Performance */}
+            <Line
+              type="monotone"
+              dataKey="performance"
+              stroke="#3b82f6" // blue
+              strokeWidth={2}
+              strokeDasharray="3 3"
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
     </div>
+    
   );
 }

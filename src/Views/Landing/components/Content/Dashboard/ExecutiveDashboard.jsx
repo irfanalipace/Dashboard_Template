@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import KPICard from '../../../../../components/KPICard/KPICard';
 import DualLineChart from '../../../../../components/charts/DualLineChart';
@@ -31,7 +31,7 @@ import HRMISChart from '../../HRMS/HRMISChart.JSX';
 import FinanceChart from '../../Financel/FinanceChart';
 import ActivityChart from '../../ActivityManagment/ActivityChart';
 import LegalChart from '../../Financel/LegalChart';
-
+import Loader from '../../../../../components/loader/Loader';
 const kpisData = [
   { id: 1, label: "Force Requisitions", value: 373, type: "FR", url: "force_requisitions" },
   { id: 2, label: "Total Stations", value: 125, type: "stations", url: "stations" },
@@ -43,9 +43,11 @@ const kpisData = [
   { id: 8, label: "Total Tenders", value: 38, type: "TT", url: "tenders" },
 ];
 const lineData = [
-  { name: "Jan", value: 30 },
-  { name: "Feb", value: 45 },
-  { name: "Mar", value: 60 },
+  { name: "Field Staff", value: 88 },
+  { name: "Admin", value: 78 },
+  { name: "Legal & Compliance", value: 82 },
+  { name: "Finance & Procurement", value: 75 },
+  { name: "Operations", value: 90 },
 ];
 
 const barData = [
@@ -54,14 +56,24 @@ const barData = [
 ];
 
 const donutData = [
-  { name: "Admin", value: 300 },
-  { name: "Court", value: 150 },
-  { name: "Self", value: 100 },
+  { name: "Field Staff Utilized", value: 320 },
+  { name: "Field Staff Non-Utilized", value: 80 },
+  { name: "Admin", value: 50 },
+  { name: "Legal & Compliance", value: 40 },
+  { name: "Finance & Procurement", value: 30 },
 ];
 
 export default function ExecutiveDashboard() {
+  const [selectedId, setSelectedId] = useState(kpisData[0]?.id);
   const navigate = useNavigate();
+  const [loader, setLoader] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => setLoader(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loader) return <Loader />;
   return (
     <div className="space-y-6 bg-[#F9FAFB]">
 
@@ -73,31 +85,45 @@ export default function ExecutiveDashboard() {
             label={k.label}
             value={k.value}
             type={k.type}
-            onClick={() => navigate(`/dashboard/${k.url}`)}
+            isSelected={selectedId === k.id}
+            onClick={() => {
+              setSelectedId(k.id);
+              navigate(`/dashboard/${k.url}`);
+            }}
           />
-
         ))}
       </div>
 
 
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-        <div className="md:col-span-6"><MapCard /></div>
+
         <div className="md:col-span-6"><FieldStaffDeploymentCard /></div>
+        <div className="md:col-span-6"><LegalChart /></div>
       </div>
 
 
 
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 mt-4">
+        <HRMISChart />
+        <FinanceChart />
+        <ActivityChart />
 
+      </div>
       <div className="flex-1 bg-white rounded-xl shadow p-4 flex justify-center items-center">
         <InventoryAssetsCard />
       </div>
 
+
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div className="md:col-span-12 col-span-1 h-[400px]">
+          <MapCard />
+        </div>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         <TopStationsTable data={topStations} />
         <SalesOverTime />
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white rounded-xl shadow p-4">
           <DonutChart value={attendance.present} />
@@ -119,7 +145,6 @@ export default function ExecutiveDashboard() {
           <AlertsList items={alerts} />
         </div>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 ">
 
         <ChartCard title="Performance Comparison">
@@ -134,14 +159,6 @@ export default function ExecutiveDashboard() {
           <BeautifulDonutChart data={donutData} />
         </ChartCard>
 
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <HRMISChart />
-        <FinanceChart />
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <ActivityChart />
-        <LegalChart />
       </div>
     </div>
   );

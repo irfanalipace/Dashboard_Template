@@ -22,8 +22,8 @@ export default function DepartmentPerformanceChart() {
   return (
     <div className="bg-white rounded-2xl shadow p-6">
       
-      {/* Title Section */}
-      <Typography className="text-lg font-semibold">
+   
+      <Typography>
         Department Performance Index (Monthly Trend)
       </Typography>
 

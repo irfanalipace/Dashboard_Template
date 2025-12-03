@@ -22,7 +22,7 @@ export default function TopStationsTable({ data }) {
 
       <Typography
 
-        sx={{ color: "#4a5971", mb: 2, fontWeight: 700 }}
+        //sx={{ color: "#4a5971", mb: 2, fontWeight: 700 }}
       >
         Top 5 Performing Stations
       </Typography>

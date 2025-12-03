@@ -46,7 +46,7 @@ export default function FieldStaffDeploymentCard() {
 
       <Box sx={{ display: "flex", alignItems: "center", gap: 3, flexWrap: "wrap" }}>
         {/* LINE CHART */}
-        <Box sx={{ flex: 1, minWidth: 300, height: 300 }}>
+        <Box sx={{ flex: 1, minWidth: 300, height: 150 }}>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data}>
               <CartesianGrid stroke="#f0f0f0" strokeDasharray="5 5" />

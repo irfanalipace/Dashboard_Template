@@ -23,7 +23,7 @@ export default function InventoryAssetsCard() {
     <div elevation={3} className=" rounded-xl bg-white w-full">
 
       <Typography variant="h6" className="mb-4 font-bold text-gray-800">
-        7. ES Inventory & Assets
+        ES Inventory & Assets
       </Typography>
 
       <div className="flex">
@@ -45,7 +45,7 @@ export default function InventoryAssetsCard() {
         </div>
 
 
-        <div className="w-full lg:w-48 flex flex-col items-center gap-4">
+        <div className="w-full lg:w-48 flex flex-col p-3 items-center gap-4">
 
           <div className="text-center">
             <p className="text-3xl font-bold text-[#1B263B]">{totalAssets}</p>
@@ -65,7 +65,7 @@ export default function InventoryAssetsCard() {
                   cx="50%"
                   cy="50%"
                   outerRadius={60}
-                  label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+                //  label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
                 >
                   {pieData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

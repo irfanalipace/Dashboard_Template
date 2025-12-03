@@ -51,11 +51,11 @@ export default function MapCard({ onDistrictClick }) {
       >
         Punjab Districts Map
       </Typography>
-      <div className="flex-1 rounded-lg overflow-hidden relative">
+      <div className="flex-1 rounded-lg relative">
         <MapContainer
           ref={mapRef}
           center={[31.5, 72.7]}
-          zoom={7}
+          zoom={10}
           scrollWheelZoom={true}
           style={{ width: "100%", height: "100%" }}
           whenCreated={(map) => mapRef.current = map}
@@ -81,49 +81,109 @@ export default function MapCard({ onDistrictClick }) {
           ))}
         </MapContainer>
 
-        {hoverStation && (
+       {hoverStation && (
+  <div
+    style={{
+      position: "absolute",
+      top: Math.min(mousePos.y + 15, window.innerHeight - 330),
+      left: Math.min(mousePos.x + 15, window.innerWidth - 260),
+      width: "260px",
+      maxHeight: "440px",
+      background: "rgba(255, 255, 255, 0.95)",
+      backdropFilter: "blur(8px)",
+      borderRadius: "16px",
+      padding: "16px",
+      boxShadow: "0 8px 25px rgba(0,0,0,0.25)",
+      zIndex: 1000,
+      fontSize: "13px",
+      overflowY: "auto",
+      pointerEvents: "none",
+      animation: "fadeIn 0.25s ease-in-out",
+      border: "1px solid #e5e7eb",
+    }}
+    className="hover-box"
+  >
+    {/* Title */}
+    <div className="mb-3">
+      <h3 className="text-lg font-bold text-[#1F2937]">
+        {hoverStation.name}
+      </h3>
+      <p className="text-gray-500 text-xs">{hoverStation.address}</p>
+    </div>
+
+    {/* Beautiful stats list */}
+    <div className="space-y-3">
+
+      {/* EO / IO */}
+      <div className="bg-gray-50 rounded-md p-2 shadow-sm border-l-4 border-blue-500">
+        <div className="flex justify-between text-sm">
+          <span className="font-semibold text-gray-700">Total EO</span>
+          <span className="font-bold text-blue-600">{hoverStation.totalEO}</span>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="font-semibold text-gray-700">Total IO</span>
+          <span className="font-bold text-indigo-600">{hoverStation.totalIO}</span>
+        </div>
+
+        {/* Mini bar chart */}
+        <div className="mt-1 h-2 w-full bg-gray-200 rounded">
           <div
-            style={{
-              position: "absolute",
-              top: Math.min(mousePos.y + 15, window.innerHeight - 330), // ensure it doesn't overflow bottom
-              left: Math.min(mousePos.x + 15, window.innerWidth - 250), // ensure it doesn't overflow right
-              width: "240px",
-              maxHeight: "320px",
-              background: "linear-gradient(145deg, #ffffff, #f3f4f6)",
-              borderRadius: "12px",
-              padding: "12px",
-              boxShadow: "0 4px 15px rgba(0,0,0,0.25)",
-              zIndex: 1000,
-              fontSize: "12px",
-              overflowY: "auto",
-              pointerEvents: "none",
-              transition: "all 0.2s ease-in-out",
-              animation: "fadeIn 0.25s ease-in-out",
-            }}
-            className="hover-box"
-          >
-            <div className="flex items-center mb-1">
+            className="h-full bg-blue-500 rounded"
+            style={{ width: `${(hoverStation.totalEO / (hoverStation.totalEO + hoverStation.totalIO)) * 100}%` }}
+          />
+        </div>
+      </div>
 
-              <strong style={{ fontSize: "14px", color: "#111827" }}>{hoverStation.name}</strong>
-            </div>
+      {/* Requisitions / Strength */}
+      <div className="bg-gray-50 rounded-md p-2 shadow-sm border-l-4 border-green-500">
+        <div className="flex justify-between text-sm">
+          <span className="font-semibold text-gray-700">Requisitions</span>
+          <span className="font-bold text-green-600">{hoverStation.totalRequisitions}</span>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="font-semibold text-gray-700">Strength</span>
+          <span className="font-bold text-emerald-600">{hoverStation.totalStrength}</span>
+        </div>
 
-            <div className="space-y-1 text-gray-700">
-              <div><strong>Address:</strong> {hoverStation.address}</div>
+        {/* Mini bar chart */}
+        <div className="mt-1 h-2 w-full bg-gray-200 rounded">
+          <div
+            className="h-full bg-green-500 rounded"
+            style={{ width: `${(hoverStation.totalStrength / 100) * 100}%` }}
+          />
+        </div>
+      </div>
 
+      {/* Vehicles / HR */}
+      <div className="bg-gray-50 rounded-md p-2 shadow-sm border-l-4 border-orange-500">
+        <div className="flex justify-between text-sm">
+          <span className="font-semibold text-gray-700">Vehicles</span>
+          <span className="font-bold text-orange-600">{hoverStation.totalVehicles}</span>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="font-semibold text-gray-700">Total HR</span>
+          <span className="font-bold text-yellow-600">{hoverStation.totalHR}</span>
+        </div>
 
-              <div className="flex justify-between"><div><strong>Total EO:</strong> {hoverStation.totalEO}</div><div><strong>Total IO:</strong> {hoverStation.totalIO}</div></div>
+        {/* Mini bar chart */}
+        <div className="mt-1 h-2 w-full bg-gray-200 rounded">
+          <div
+            className="h-full bg-orange-500 rounded"
+            style={{ width: `${(hoverStation.totalVehicles / (hoverStation.totalVehicles + hoverStation.totalHR)) * 100}%` }}
+          />
+        </div>
+      </div>
 
-
-              <div className="flex justify-between"><div><strong>Total Requisitions:</strong>{hoverStation.totalRequisitions}</div><div><strong>Total Strength:</strong> {hoverStation.totalStrength}</div></div>
-
-              <div className="flex justify-between"><div><strong>Total Vehicles:</strong>{hoverStation.totalVehicles}</div><div><strong>Total HR:</strong>{hoverStation.totalHR}</div></div>
-
-              <div><strong>Total Inventory:</strong> {hoverStation.totalInventory}</div>
-            </div>
-          </div>
-        )}
-
-
+      {/* Inventory */}
+      <div className="bg-gray-50 rounded-md p-2 shadow-sm border-l-4 border-purple-500">
+        <div className="flex justify-between text-sm">
+          <span className="font-semibold text-gray-700">Inventory</span>
+          <span className="font-bold text-purple-600">{hoverStation.totalInventory}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
 
 
       </div>
