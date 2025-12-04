@@ -11,7 +11,6 @@ import {
 import { Typography } from "@mui/material";
 import { Box } from "lucide-react";
 
-// Example data: Utilized vs Non-Utilized Staff with performance score per month
 const personnelTrend = [
   { month: "Jan", utilized: 85, nonUtilized: 15, performance: 78 },
   { month: "Feb", utilized: 90, nonUtilized: 10, performance: 82 },
@@ -21,7 +20,7 @@ const personnelTrend = [
 
 export default function LegalChart() {
   return (
-        
+
     <div className="bg-white rounded-xl shadow p-4 h-[300px]">
       <Typography className="text-sm font-semibold mb-2">
         Workforce Utilization & Performance
@@ -34,30 +33,28 @@ export default function LegalChart() {
             <YAxis fontSize={12} />
             <Tooltip />
             <Legend verticalAlign="top" height={36} />
-            
-            {/* Utilized Staff */}
+
+          
             <Line
               type="monotone"
               dataKey="utilized"
-              stroke="#10b981" // green
+              stroke="#10b981" 
               strokeWidth={2}
               activeDot={{ r: 6 }}
             />
 
-            {/* Non-Utilized Staff */}
             <Line
               type="monotone"
               dataKey="nonUtilized"
-              stroke="#ef4444" // red
+              stroke="#ef4444"
               strokeWidth={2}
               strokeDasharray="5 5"
             />
 
-            {/* Performance */}
             <Line
               type="monotone"
               dataKey="performance"
-              stroke="#3b82f6" // blue
+              stroke="#3b82f6"
               strokeWidth={2}
               strokeDasharray="3 3"
             />
@@ -65,6 +62,6 @@ export default function LegalChart() {
         </ResponsiveContainer>
       </div>
     </div>
-    
+
   );
 }

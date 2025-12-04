@@ -20,6 +20,7 @@ import {
   alerts,
 
 } from '../../../../../mocks/dashboardData';
+import { Box, Typography, Card } from "@mui/material"
 import FieldStaffDevelopmenet from '../../FieldStaffDevelopmenet/FieldStaffDevelopmenet';
 import FieldStaffDeploymentCard from '../../FieldStaffDevelopmenet/FieldStaffDeploymentCard';
 import InventoryAssetsCard from '../ESInoventory/InventoryAssetsCard';
@@ -32,15 +33,18 @@ import FinanceChart from '../../Financel/FinanceChart';
 import ActivityChart from '../../ActivityManagment/ActivityChart';
 import LegalChart from '../../Financel/LegalChart';
 import Loader from '../../../../../components/loader/Loader';
+
+
+
 const kpisData = [
   { id: 1, label: "Force Requisitions", value: 373, type: "FR", url: "force_requisitions" },
-  { id: 2, label: "Total Stations", value: 125, type: "stations", url: "stations" },
-  { id: 3, label: "Total HR", value: 38, type: "hr", url: "hr" },
-  { id: 4, label: "Total FIR", value: 210, type: "fir", url: "fir" },
-  { id: 5, label: "Total Inventory", value: 18, type: "ims", url: "inventory" },
-  { id: 6, label: "Total Financial", value: 42, type: "TF", url: "financial" },
-  { id: 7, label: "Total Vehicles", value: 125, type: "tv", url: "vehicles" },
-  { id: 8, label: "Total Tenders", value: 38, type: "TT", url: "tenders" },
+  { id: 2, label: "Stations", value: 125, type: "stations", url: "stations" },
+  { id: 3, label: "Human Resource", value: 38, type: "hr", url: "hr" },
+  { id: 4, label: "FIR", value: 210, type: "fir", url: "fir" },
+  { id: 5, label: "Inventory", value: 18, type: "ims", url: "inventory" },
+  { id: 6, label: "Financial", value: 42, type: "TF", url: "financial" },
+  { id: 7, label: "Vehicles", value: 125, type: "tv", url: "vehicles" },
+  { id: 8, label: "Tenders", value: 38, type: "TT", url: "tenders" },
 ];
 const lineData = [
   { name: "Field Staff", value: 88 },
@@ -97,69 +101,50 @@ export default function ExecutiveDashboard() {
 
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+  {/* Left Card: Field Staff Deployment */}
+  <div className="md:col-span-6">
+    <FieldStaffDeploymentCard />
+  </div>
 
-        <div className="md:col-span-6"><FieldStaffDeploymentCard /></div>
-        <div className="md:col-span-6"><LegalChart /></div>
-      </div>
-
-
-
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 mt-4">
-        <HRMISChart />
-        <FinanceChart />
-        <ActivityChart />
-
-      </div>
-      <div className="flex-1 bg-white rounded-xl shadow p-4 flex justify-center items-center">
-        <InventoryAssetsCard />
-      </div>
+  {/* Right Card: Inventory & Assets */}
+  <div className="md:col-span-6">
+    <InventoryAssetsCard />
+  </div>
+</div>
 
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+  <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         <div className="md:col-span-12 col-span-1 h-[400px]">
           <MapCard />
         </div>
       </div>
+
+    
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+   <HRMISChart />
+     <ActivityChart />
+</div>
+    
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         <TopStationsTable data={topStations} />
         <SalesOverTime />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white rounded-xl shadow p-4">
-          <DonutChart value={attendance.present} />
-        </div>
-
-        <div className="space-y-4 bg-white rounded-xl shadow p-4">
-          <h3 className="text-sm font-medium">Attendance</h3>
-          <ul className="text-sm space-y-2">
-            {attendance.breakdown.map((t, i) => (
-              <li key={i} className="flex justify-between">
-                <span>{t.tehsil}</span>
-                <span>{t.value}%</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="bg-white rounded-xl shadow p-4">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4">
+     
+        <FinanceChart />
+      
+    <div className="bg-white rounded-xl shadow p-4">
           <AlertsList items={alerts} />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 ">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 ">
 
-        <ChartCard title="Performance Comparison">
-          <BeautifulLineChart data={lineData} />
-        </ChartCard>
-
-        <ChartCard title="Fuel Analytics">
-          <BeautifulBarChart data={barData} />
-        </ChartCard>
 
         <ChartCard title="Requisition Source Tracking">
           <BeautifulDonutChart data={donutData} />
         </ChartCard>
 
-      </div>
+      </div> */}
     </div>
   );
 }

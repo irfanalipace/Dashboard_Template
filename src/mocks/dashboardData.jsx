@@ -30,13 +30,14 @@ export const attendance = { present: 89, absent: 11, breakdown: [
 ] }
 
 export const topStations = [
-  { name: 'Tehsil A', score: 92 },
-  { name: 'Tehsil B', score: 90 },
-  { name: 'Tehsil C', score: 68 },
-  { name: 'Tehsil D', score: 65 },
-  { name: 'Tehsil E', score: 63 },
-    { name: 'Tehsil F', score: 67 }
-]
+  { name: 'Lahore City', score: 92 },
+  { name: 'Faisalabad - Jaranwala', score: 90 },
+  { name: 'Faisalabad - Saddar', score: 68 },
+  { name: 'Ahmadpur Sial', score: 65 },
+  { name: "Toba Tek Singh", score: 63 },
+  { name: 'Kot Radha Kishan Center', score: 67 }
+];
+
 
 export const alerts = [
   { id: 1, label: 'Pending FIRs', count: 8, severity: 'warning' },
