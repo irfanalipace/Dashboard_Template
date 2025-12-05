@@ -154,15 +154,16 @@ export default function InventoryFixedCards() {
     },
   ];
 
-  const maxVisibleSubItems = 3; // maximum number of sub-items to show per card
+  const maxVisibleSubItems = 3; 
 
   return (
     <Paper
       sx={{
         p: 2,
-        height: 344, // fixed height
+        height: 340, 
         display: "flex",
         flexDirection: "column",
+        background:"white"
       }}
     >
       <Typography>

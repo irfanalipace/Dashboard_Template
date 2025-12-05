@@ -1,0 +1,35 @@
+:root {
+
+  --color-charcoal-grey: #333333;
+  --color-gold: #D4AF37;
+  --color-white: #FFFFFF;
+  --color-silver: #C0C0C0;
+
+
+  --font-primary: 'IBM Plex Sans', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background-color: var(--color-white);
+  color: var(--color-charcoal-grey);
+}
+
+.card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-silver);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+}

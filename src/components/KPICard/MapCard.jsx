@@ -55,7 +55,7 @@ export default function MapCard({ onDistrictClick }) {
         <MapContainer
           ref={mapRef}
           center={[31.5, 72.7]}
-          zoom={10}
+          zoom={8}
           scrollWheelZoom={true}
           style={{ width: "100%", height: "100%" }}
           whenCreated={(map) => mapRef.current = map}
@@ -103,6 +103,11 @@ export default function MapCard({ onDistrictClick }) {
             }}
             className="hover-box"
           >
+<div className="mb-3 pb-2 border-b border-gray-200">
+  <h2 className="text-base font-bold text-gray-800 leading-tight">
+    Enforcement — {hoverStation.name} Station
+  </h2>
+</div>
 
 
             {/* Stats Grid - 2 Cards per Row */}
@@ -110,7 +115,7 @@ export default function MapCard({ onDistrictClick }) {
 
               {/* EO / IO */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-blue-100 hover:shadow-md transition">
-                <h4 className="text-xs font-semibold text-gray-700 mb-1">EO / IO</h4>
+          
 
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">EO</span>
@@ -137,7 +142,7 @@ export default function MapCard({ onDistrictClick }) {
 
               {/* Requisitions / Strength */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-green-100 hover:shadow-md transition">
-                <h4 className="text-xs font-semibold text-gray-700 mb-1">Requisitions / Strength</h4>
+               
 
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Requisitions</span>
@@ -165,7 +170,7 @@ export default function MapCard({ onDistrictClick }) {
 
               {/* Vehicles */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-orange-100 hover:shadow-md transition">
-                <h4 className="text-xs font-semibold text-gray-700 mb-1">Vehicles</h4>
+           
 
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Vehicles</span>
@@ -187,10 +192,10 @@ export default function MapCard({ onDistrictClick }) {
 
               {/* Inventory */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-purple-100 hover:shadow-md transition">
-                <h4 className="text-xs font-semibold text-gray-700 mb-1">Inventory</h4>
+        
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Items</span>
+                  <span className="text-gray-600">Inventory</span>
                   <span className="font-bold text-purple-600">
                     {hoverStation.totalInventory}
                   </span>
@@ -199,7 +204,7 @@ export default function MapCard({ onDistrictClick }) {
 
               {/* FIR */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-red-100 hover:shadow-md transition">
-                <h4 className="text-xs font-semibold text-gray-700 mb-1">FIR</h4>
+        
 
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">FIR</span>

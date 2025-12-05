@@ -8,12 +8,13 @@ import {
   Legend,
   ResponsiveContainer,
   LabelList,
+  PieChart,
+  Pie,
+  Cell,
 } from "recharts";
-import { PieChart, Pie, Cell } from "recharts";
 import { Paper, Typography, Box } from "@mui/material";
 
 export default function PERAOverallUtilization() {
-  // NEW: Real seat counts (example)
   const displayStations = [
     { station: "Lahore", allocated: 380, approved: 350, utilized: 260 },
     { station: "Rawalpindi - City", allocated: 300, approved: 280, utilized: 220 },
@@ -23,18 +24,16 @@ export default function PERAOverallUtilization() {
     { station: "Bahawalpur - City", allocated: 210, approved: 190, utilized: 150 },
   ];
 
-  // Auto-calc remaining + non-utilized seats
   const stationData = displayStations.map((s) => ({
     ...s,
     remaining: s.allocated - s.utilized,
-    nonUtilized: s.allocated - s.utilized, // ADDED
+    nonUtilized: s.allocated - s.utilized,
   }));
 
-  // Totals for Pie Chart
   const totalAllocated = stationData.reduce((a, b) => a + b.allocated, 0);
   const totalUtilized = stationData.reduce((a, b) => a + b.utilized, 0);
   const totalRemaining = stationData.reduce((a, b) => a + b.remaining, 0);
-  const totalNonUtilized = stationData.reduce((a, b) => a + b.nonUtilized, 0); // ADDED
+  const totalNonUtilized = stationData.reduce((a, b) => a + b.nonUtilized, 0);
 
   const pieData = [
     { name: "Allocated", value: totalAllocated },
@@ -55,7 +54,7 @@ export default function PERAOverallUtilization() {
         border: "1px solid rgba(0,0,0,0.05)",
       }}
     >
-      <Typography>PERA — Workforce Stations</Typography>
+      <Typography>Workforce Stations</Typography>
 
       <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
         {/* LEFT — LINE GRAPH */}
@@ -66,12 +65,21 @@ export default function PERAOverallUtilization() {
                 dataKey="station"
                 angle={-45}
                 textAnchor="end"
-                fontSize={12}
                 interval={0}
+                style={{ fontSize: "10px" }}
               />
-              <YAxis fontSize={12} domain={[0, 400]} />
-              <Tooltip formatter={(value) => value + " Seats"} />
-              <Legend verticalAlign="top" height={36} />
+              <YAxis style={{ fontSize: "10px" }} domain={[0, 400]} />
+
+              <Tooltip
+                formatter={(value) => value + " Seats"}
+                contentStyle={{ fontSize: "10px" }}
+              />
+
+              <Legend
+                verticalAlign="top"
+                height={30}
+                wrapperStyle={{ fontSize: "10px" }}
+              />
 
               {/* Utilized */}
               <Line
@@ -84,8 +92,7 @@ export default function PERAOverallUtilization() {
                 <LabelList
                   dataKey="utilized"
                   position="top"
-                  fontSize={10}
-                  fontWeight="bold"
+                  style={{ fontSize: "8px", fontWeight: "bold" }}
                 />
               </Line>
 
@@ -100,8 +107,7 @@ export default function PERAOverallUtilization() {
                 <LabelList
                   dataKey="allocated"
                   position="top"
-                  fontSize={10}
-                  fontWeight="bold"
+                  style={{ fontSize: "8px", fontWeight: "bold" }}
                 />
               </Line>
 
@@ -117,12 +123,11 @@ export default function PERAOverallUtilization() {
                 <LabelList
                   dataKey="remaining"
                   position="top"
-                  fontSize={10}
-                  fontWeight="bold"
+                  style={{ fontSize: "8px", fontWeight: "bold" }}
                 />
               </Line>
 
-              {/* NON UTILIZED */}
+              {/* Non Utilized */}
               <Line
                 type="monotone"
                 dataKey="nonUtilized"
@@ -134,8 +139,7 @@ export default function PERAOverallUtilization() {
                 <LabelList
                   dataKey="nonUtilized"
                   position="top"
-                  fontSize={10}
-                  fontWeight="bold"
+                  style={{ fontSize: "8px", fontWeight: "bold" }}
                 />
               </Line>
             </LineChart>
@@ -163,6 +167,8 @@ export default function PERAOverallUtilization() {
                 innerRadius={45}
                 outerRadius={85}
                 dataKey="value"
+               // label={({ name, value }) => `${name}: ${value}`}
+                labelStyle={{ fontSize: "10px" }}
                 labelLine={false}
               >
                 {pieData.map((entry, i) => (
@@ -180,13 +186,13 @@ export default function PERAOverallUtilization() {
               left: "50%",
               transform: "translate(-50%, -50%)",
               textAlign: "center",
-              fontSize: "12px",
+              fontSize: "10px",
               fontWeight: "600",
-              lineHeight: "14px",
+              lineHeight: "12px",
               color: "#374151",
             }}
           >
-            <div style={{ fontSize: "10px", fontWeight: "500" }}>
+            <div style={{ fontSize: "9px", fontWeight: "500" }}>
               Workforce Utilization
             </div>
           </Box>
@@ -196,7 +202,7 @@ export default function PERAOverallUtilization() {
       {/* Summary */}
       <Box
         sx={{
-          fontSize: 14,
+          fontSize: "11px",
           color: "#374151",
           display: "flex",
           gap: 4,
@@ -204,7 +210,6 @@ export default function PERAOverallUtilization() {
           alignItems: "center",
         }}
       >
-        {/* Allocated */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <span
             style={{
@@ -215,10 +220,9 @@ export default function PERAOverallUtilization() {
               display: "inline-block",
             }}
           ></span>
-          <strong style={{fontSize:"11px"}}>Allocated:</strong> {totalAllocated}
+          <strong style={{ fontSize: "10px" }}>Allocated:</strong> {totalAllocated}
         </Box>
 
-        {/* Utilized */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <span
             style={{
@@ -229,10 +233,9 @@ export default function PERAOverallUtilization() {
               display: "inline-block",
             }}
           ></span>
-          <strong style={{fontSize:"11px"}}>Utilized:</strong> {totalUtilized}
+          <strong style={{ fontSize: "10px" }}>Utilized:</strong> {totalUtilized}
         </Box>
 
-        {/* Non Utilized */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <span
             style={{
@@ -243,10 +246,9 @@ export default function PERAOverallUtilization() {
               display: "inline-block",
             }}
           ></span>
-          <strong style={{fontSize:"11px"}}>Non-Utilized:</strong> {totalNonUtilized}
+          <strong style={{ fontSize: "10px" }}>Non-Utilized:</strong> {totalNonUtilized}
         </Box>
 
-        {/* Remaining */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <span
             style={{
@@ -257,7 +259,7 @@ export default function PERAOverallUtilization() {
               display: "inline-block",
             }}
           ></span>
-          <strong style={{fontSize:"11px"}}>Remaining:</strong> {totalRemaining}
+          <strong style={{ fontSize: "10px" }}>Remaining:</strong> {totalRemaining}
         </Box>
       </Box>
     </Paper>

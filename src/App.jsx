@@ -7,6 +7,7 @@ import './App.css'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './index.css'
+import "./style/Theme.css"
 function App() {
   return (
     <ThemeProvider theme={theme}>

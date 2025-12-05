@@ -90,11 +90,14 @@ const SideBar = ({ collapsed }) => {
     return (
         <div
             className={`
-                flex flex-col h-full bg-[#C79A5E]
+                flex flex-col h-full 
                 text-white font-barlow transition-all duration-300
                 ${collapsed ? "w-20" : "w-[258px]"}
             `}
-            style={{ scrollbarWidth: "none" }}
+         style={{
+    backgroundColor: "var(--color-gold)",
+    scrollbarWidth: "none"
+  }}
         >
 
             {/* Logo / Title */}

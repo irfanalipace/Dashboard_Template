@@ -42,7 +42,7 @@ export default function DepartmentPerformance() {
   return (
     <Card className="bg-white rounded-2xl shadow p-2">
       <CardContent>
-        <Typography fontSize={12} fontWeight={600} mb={2}>
+        <Typography>
           Requisition Submit
         </Typography>
 

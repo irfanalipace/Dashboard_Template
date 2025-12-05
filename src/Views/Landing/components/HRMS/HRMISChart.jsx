@@ -26,7 +26,7 @@ export default function HRMISAnalytics() {
   ) / (stationData.length * 2);
 
   return (
-    <Card className="bg-white rounded-xl shadow p-4">
+    <Card className="bg-[white] rounded-xl shadow p-4">
       <CardContent>
         <Typography>
           HRMIS Analytics

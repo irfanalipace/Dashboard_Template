@@ -35,13 +35,12 @@ export default function ActivityManagementGraphs() {
           <Typography>
             Activity Management
           </Typography>
-          <Typography variant="body2" color="textSecondary" mb={3} sx={{ fontSize: "9px" }}>
+          <Typography variant="body2" color="textSecondary" mb={3} sx={{ fontSize: "12px" }}>
             Monitoring performance across all departments
           </Typography>
 
-          {/* Grid: Left Line Chart, Right Pie Chart */}
           <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Left: Multi-Line Department Chart */}
+           
             <Card className="p-3 h-full">
               <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={departmentData} margin={{ top: 10, bottom: 10 }}>

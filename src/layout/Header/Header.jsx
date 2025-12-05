@@ -10,7 +10,7 @@ const Header = ({ pageTitle = "PUNJAB ENFORCEMENT & REGULATORY AUTHORITY" }) => 
     <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md sticky top-0 z-50">
 
       <div className="flex items-center space-x-4">
-        <img src="logo.png" alt="Logo" className="w-14 h-16 object-contain" />
+        <img src="logo.png" alt="Logo" className="w-20 h-14 object-contain" />
         <div>
           <h1 className="text-1xl font-bold text-gray-800">{pageTitle}</h1>
           <p className="text-sm text-gray-500">PERA 360</p>
@@ -30,7 +30,7 @@ const Header = ({ pageTitle = "PUNJAB ENFORCEMENT & REGULATORY AUTHORITY" }) => 
         <div className="relative">
           <button
             onClick={() => setShowProfileMenu(!showProfileMenu)}
-            className="flex items-center space-x-2 bg-[#C79A5E] from-primarycolor to-secondarycolor text-white px-3 py-1.5 rounded-full hover:from-secondarycolor hover:to-primarycolor transition-all duration-300"
+            className="flex items-center space-x-2 bg-[var(--color-gold)] from-primarycolor to-secondarycolor text-white px-3 py-1.5 rounded-full hover:from-secondarycolor hover:to-primarycolor transition-all duration-300"
           >
             <IoPersonOutline className="text-3xl" />
             <span className="font-semibold">Admin</span>

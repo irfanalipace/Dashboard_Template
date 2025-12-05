@@ -37,16 +37,16 @@ export default function FinanceChart() {
   const utilizationRate = ((totalUtilized / totalReleased) * 100).toFixed(1);
 
   return (
-    <Card className="bg-white rounded-2xl shadow p-4">
+    <Card className="bg-white rounded-2xl p-4">
       <CardContent>
         <Typography
         sx={{mb:1}}
         >
-          Finance & Procurement Dashboard
+          Finance & Procurement
         </Typography>
 
         {/* KPI Cards */}
-        <Box className="flex flex-wrap gap-4">
+        <Box className="flex flex-wrap gap-4 mt-6">
           <Box className="bg-gray-100 p-2 rounded w-1/4 text-center">
             <Typography sx={{ fontSize: "9px" }}>Total Funds Released</Typography>
             <Typography sx={{ fontSize: "9px", fontWeight: 700 }}>
