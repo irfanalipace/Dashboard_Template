@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import {
   LineChart,
   Line,
@@ -12,75 +12,86 @@ import {
   Legend,
 } from "recharts";
 import { Box, Typography, Card, CardContent } from "@mui/material";
-import { stations } from "../../../../mocks/stations";
 
 const COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
 
-// Sample data for departments
 const departmentData = [
-  { name: "Anti-Enchroachmenet", completed: 120, pending: 30, inProgress: 50, delayed: 20 },
-  { name: "Price Control", completed: 90, pending: 20, inProgress: 30, delayed: 10 },
-  { name: "Evication", completed: 70, pending: 15, inProgress: 25, delayed: 8 },
-  { name: "Public Nuisance", completed: 60, pending: 10, inProgress: 20, delayed: 5 },
-  { name: "Anti-Hoarding", completed: 50, pending: 8, inProgress: 15, delayed: 3 },
+  { name: "Anti-Encroachment", completed: 120, pending: 30, inProgress: 50, delayed: 20, perDay: 15 },
+  { name: "Price Control", completed: 90, pending: 20, inProgress: 30, delayed: 10, perDay: 12 },
+  { name: "Eviction", completed: 70, pending: 15, inProgress: 25, delayed: 8, perDay: 10 },
+  { name: "Public Nuisance", completed: 60, pending: 10, inProgress: 20, delayed: 5, perDay: 8 },
+  { name: "Anti-Hoarding", completed: 50, pending: 8, inProgress: 15, delayed: 3, perDay: 7 },
 ];
 
-export default function ActivityManagementGraphs() {
-  const [selectedStations] = useState(stations.slice(0, 8).map((s) => s.name));
+export default function ActivityManagementDashboard() {
+  const totals = {
+    completed: departmentData.reduce((sum, d) => sum + d.completed, 0),
+    pending: departmentData.reduce((sum, d) => sum + d.pending, 0),
+    inProgress: departmentData.reduce((sum, d) => sum + d.inProgress, 0),
+    delayed: departmentData.reduce((sum, d) => sum + d.delayed, 0),
+    perDay: departmentData.reduce((sum, d) => sum + d.perDay, 0),
+  };
 
   return (
-    <Box className="space-y-4">
-      <Card className="bg-white rounded-xl shadow p-3">
-        <CardContent>
-          <Typography>
-            Activity Management
-          </Typography>
-          <Typography variant="body2" color="textSecondary" mb={3} sx={{ fontSize: "12px" }}>
-            Monitoring performance across all departments
-          </Typography>
+    <Card sx={{ display: "flex", flexDirection: "column" }}>
+      <CardContent sx={{ p: 2, flex: 1 }}>
+        <Typography sx={{ mb: 3 }}>
+          Activity Management
+        </Typography>
 
-          <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
-           
-            <Card className="p-3 h-full">
-              <ResponsiveContainer width="100%" height={250}>
-                <LineChart data={departmentData} margin={{ top: 10, bottom: 10 }}>
-                  <XAxis dataKey="name" tick={{ fontSize: 9 }} />
-                  <YAxis tick={{ fontSize: 9 }} />
-                  <Tooltip
-                    contentStyle={{ fontSize: "9px", backgroundColor: "#F3F4F6", borderRadius: 8 }}
-                  />
-                  <Line type="monotone" dataKey="completed" name="Completed" stroke={COLORS[0]} strokeWidth={2} dot={{ r: 3 }} />
-                  <Line type="monotone" dataKey="pending" name="Pending" stroke={COLORS[1]} strokeWidth={2} dot={{ r: 3 }} />
-                  <Line type="monotone" dataKey="inProgress" name="In Progress" stroke={COLORS[2]} strokeWidth={2} dot={{ r: 3 }} />
-                  <Line type="monotone" dataKey="delayed" name="Delayed" stroke={COLORS[3]} strokeWidth={2} dot={{ r: 3 }} />
-                </LineChart>
-              </ResponsiveContainer>
-            </Card>
+        <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          {/* Line Chart */}
+          <Box sx={{ height: 180 }}>
+           <ResponsiveContainer width="100%" height="100%">
+  <LineChart data={departmentData}>
+    <XAxis
+      dataKey="name"
+      interval={0}
+      tick={{ fontSize: 10 }}
+      tickMargin={6}
+      height={40}
+      angle={-15}
+      textAnchor="end"
+    />
+    <YAxis tick={{ fontSize: 10 }} />
+    <Tooltip contentStyle={{ fontSize: "10px" }} />
+    <Legend wrapperStyle={{ fontSize: 10 }} />
+    <Line type="monotone" dataKey="completed" stroke="#3b82f6" strokeWidth={2} dot={false} />
+    <Line type="monotone" dataKey="pending" stroke="#10b981" strokeWidth={2} dot={false} />
+    <Line type="monotone" dataKey="inProgress" stroke="#f59e0b" strokeWidth={2} dot={false} />
+    <Line type="monotone" dataKey="delayed" stroke="#ef4444" strokeWidth={2} dot={false} />
+    <Line type="monotone" dataKey="perDay" stroke="#8b5cf6" strokeWidth={2} dot={false} />
+  </LineChart>
+</ResponsiveContainer>
 
-            {/* Right: Department Distribution Pie */}
-            <Card className="p-3 h-full">
-              <ResponsiveContainer width="100%" height={250}>
-                <PieChart>
-                  <Pie
-                    data={departmentData}
-                    dataKey="completed"
-                    nameKey="name"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={80}
-                    label
-                  >
-                    {departmentData.map((entry, index) => (
-                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Legend verticalAlign="bottom" iconSize={10} wrapperStyle={{ fontSize: 9 }} />
-                </PieChart>
-              </ResponsiveContainer>
-            </Card>
           </Box>
-        </CardContent>
-      </Card>
-    </Box>
+
+          {/* Pie Chart */}
+          <Box sx={{ height: 150, position: "relative" }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={departmentData}
+                  dataKey="completed"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  fontSize={11}
+                  outerRadius="60%"
+                  label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+                 // labelStyle={{ fontSize: 9 }}
+                >
+                  {departmentData.map((entry, index) => (
+                    <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Legend wrapperStyle={{ fontSize: 10 }} />
+              </PieChart>
+            </ResponsiveContainer>
+        
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
   );
 }

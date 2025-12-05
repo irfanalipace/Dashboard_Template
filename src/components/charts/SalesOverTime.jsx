@@ -97,34 +97,36 @@ export default function DepartmentPerformance() {
           </Box>
 
           {/* Pie Chart */}
-          <Box className="flex-1 h-64 flex items-center justify-center">
-            <ResponsiveContainer width="80%" height="100%">
-              <PieChart>
-                <Pie
-                  data={pieData}
-                  dataKey="requisition"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  fontSize={11}
-                  outerRadius={60}
-                  label={(entry) => entry.name}
-                >
-                  {pieData.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={PIE_COLORS[index % PIE_COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-                <Legend
-                  verticalAlign="bottom"
-                  height={20}
-                  wrapperStyle={{ fontSize: "9px" }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </Box>
+       <Box className="flex-1 h-[250px] flex items-center justify-center">
+  <ResponsiveContainer width="70%" height="100%">
+    <PieChart>
+      <Pie
+        data={pieData}
+        dataKey="requisition"
+        nameKey="name"
+        cx="50%"
+        cy="50%"
+        fontSize={9}
+        outerRadius={40}   // smaller radius
+        label={({ name }) => name}
+      >
+        {pieData.map((entry, index) => (
+          <Cell
+            key={`cell-${index}`}
+            fill={PIE_COLORS[index % PIE_COLORS.length]}
+          />
+        ))}
+      </Pie>
+      <Legend
+        verticalAlign="bottom"
+        height={25}
+        wrapperStyle={{ fontSize: "11px" }}
+      />
+    </PieChart>
+  </ResponsiveContainer>
+</Box>
+
+             
         </Box>
       </CardContent>
     </Card>

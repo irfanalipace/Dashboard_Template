@@ -103,11 +103,11 @@ export default function MapCard({ onDistrictClick }) {
             }}
             className="hover-box"
           >
-<div className="mb-3 pb-2 border-b border-gray-200">
-  <h2 className="text-base font-bold text-gray-800 leading-tight">
-    Enforcement — {hoverStation.name} Station
-  </h2>
-</div>
+            <div className="mb-3 pb-2 border-b border-gray-200">
+              <h2 className="text-base font-bold text-gray-800 leading-tight">
+                Enforcement — {hoverStation.name} Station
+              </h2>
+            </div>
 
 
             {/* Stats Grid - 2 Cards per Row */}
@@ -115,15 +115,15 @@ export default function MapCard({ onDistrictClick }) {
 
               {/* EO / IO */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-blue-100 hover:shadow-md transition">
-          
+
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">EO</span>
+                  <h4 className="text-xs font-semibold text-gray-700">EO</h4>
                   <span className="font-bold text-blue-600">{hoverStation.totalEO}</span>
                 </div>
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">IO</span>
+                <h4 className="text-xs font-semibold text-gray-700">IO</h4>
                   <span className="font-bold text-indigo-600">{hoverStation.totalIO}</span>
                 </div>
 
@@ -132,7 +132,7 @@ export default function MapCard({ onDistrictClick }) {
                     className="h-full bg-blue-500 rounded-full"
                     style={{
                       width: `${(hoverStation.totalEO /
-                          (hoverStation.totalEO + hoverStation.totalIO)) *
+                        (hoverStation.totalEO + hoverStation.totalIO)) *
                         100
                         }%`,
                     }}
@@ -142,17 +142,17 @@ export default function MapCard({ onDistrictClick }) {
 
               {/* Requisitions / Strength */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-green-100 hover:shadow-md transition">
-               
+
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Requisitions</span>
+                 <h4 className="text-xs font-semibold text-gray-700">Requisitions</h4>
                   <span className="font-bold text-green-600">
                     {hoverStation.forceRequisitions}
                   </span>
                 </div>
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Strength</span>
+                 <h4 className="text-xs font-semibold text-gray-700">Strength</h4>
                   <span className="font-bold text-emerald-600">
                     {hoverStation.totalStrength}
                   </span>
@@ -170,10 +170,9 @@ export default function MapCard({ onDistrictClick }) {
 
               {/* Vehicles */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-orange-100 hover:shadow-md transition">
-           
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Vehicles</span>
+                  <h4 className="text-xs font-semibold text-gray-700">Vehicles</h4>
                   <span className="font-bold text-orange-600">{hoverStation.totalVehicles}</span>
                 </div>
 
@@ -182,7 +181,7 @@ export default function MapCard({ onDistrictClick }) {
                     className="h-full bg-orange-500 rounded-full"
                     style={{
                       width: `${(hoverStation.totalVehicles /
-                          (hoverStation.totalVehicles + hoverStation.totalHR)) *
+                        (hoverStation.totalVehicles + hoverStation.totalHR)) *
                         100
                         }%`,
                     }}
@@ -192,10 +191,10 @@ export default function MapCard({ onDistrictClick }) {
 
               {/* Inventory */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-purple-100 hover:shadow-md transition">
-        
+
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Inventory</span>
+                  <h4 className="text-xs font-semibold text-gray-700">Inventory</h4>
                   <span className="font-bold text-purple-600">
                     {hoverStation.totalInventory}
                   </span>
@@ -204,17 +203,17 @@ export default function MapCard({ onDistrictClick }) {
 
               {/* FIR */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-red-100 hover:shadow-md transition">
-        
+
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">FIR</span>
+                 <h4 className="text-xs font-semibold text-gray-700">FIR</h4>
                   <span className="font-bold text-red-600">{hoverStation.totalFIR}</span>
                 </div>
               </div>
 
               {/* Financial */}
               <div className="bg-gray-50 rounded-xl p-3 shadow-sm border border-teal-100 hover:shadow-md transition">
-                <h4 className="text-xs font-semibold text-gray-700 mb-1">Financial</h4>
+               <h4 className="text-xs font-semibold text-gray-700">Fuel Consumption</h4>
 
                 <div className="flex justify-between text-sm">
 
@@ -224,20 +223,20 @@ export default function MapCard({ onDistrictClick }) {
                 </div>
               </div>
 
-              {/* Tender */}
-              <div className="w-full bg-gray-50 rounded-xl p-3 shadow-sm border border-pink-100 hover:shadow-md transition">
-                <div className="flex justify-between items-center text-sm">
-                  <h4 className="text-xs font-semibold text-gray-700">Tender</h4>
-
-                  <span className="font-bold text-pink-600">
-                    {hoverStation.totalTender}
-                  </span>
-                </div>
-              </div>
+           
 
 
             </div>
+ 
+              <div className="w-full bg-gray-50 rounded-xl p-3 shadow-sm border border-pink-100 hover:shadow-md transition mt-2">
+                <div className="flex justify-between items-center text-sm">
+                  <h4 className="text-xs font-semibold text-gray-700">Chalan</h4>
 
+                  <span className="font-bold text-pink-600">
+                    {hoverStation.chalan}
+                  </span>
+                </div>
+              </div>
           </div>
         )}
 

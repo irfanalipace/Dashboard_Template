@@ -38,12 +38,13 @@ import Loader from '../../../../../components/loader/Loader';
 
 const kpisData = [
   { id: 1, label: "Force Requisitions", value: 373, type: "FR", url: "force_requisitions" },
-  { id: 2, label: "Stations", value: 125, type: "stations", url: "stations" },
-  { id: 3, label: "Human Resource", value: 38, type: "hr", url: "hr" },
+  { id: 2, label: "Enforcement Stations", value: 154, type: "stations", url: "stations" },
+  { id: 3, label: "Human Resource", value: 4000, type: "hr", url: "hr" },
   { id: 4, label: "FIR", value: 210, type: "fir", url: "fir" },
   { id: 5, label: "Inventory", value: 18, type: "ims", url: "inventory" },
-  { id: 6, label: "Financial", value: 42, type: "TF", url: "financial" },
-  { id: 7, label: "Vehicles", value: 125, type: "tv", url: "vehicles" },
+{ id: 6, label: "Financial", value: "421B", type: "TF", url: "financial" },
+
+  { id: 7, label: "Vehicles", value: 1000, type: "tv", url: "vehicles" },
   { id: 8, label: "Tenders", value: 38, type: "TT", url: "tenders" },
 ];
 const lineData = [
