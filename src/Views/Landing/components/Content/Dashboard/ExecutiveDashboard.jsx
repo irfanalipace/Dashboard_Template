@@ -33,6 +33,9 @@ import FinanceChart from '../../Financel/FinanceChart';
 import ActivityChart from '../../ActivityManagment/ActivityChart';
 import LegalChart from '../../Financel/LegalChart';
 import Loader from '../../../../../components/loader/Loader';
+import ChallanChart from '../../ActivityManagment/ChallanFir';
+import FIRChart from '../../ActivityManagment/FirChart';
+import ChallanFir from '../../ActivityManagment/ChallanFir';
 
 
 
@@ -113,6 +116,10 @@ export default function ExecutiveDashboard() {
   </div>
 </div>
 
+
+<div className="grid grid-cols-1 lg:grid-cols-1 gap-6 mt-6">
+  <ChallanFir />
+</div>
 
   <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         <div className="md:col-span-12 col-span-1 h-[400px]">

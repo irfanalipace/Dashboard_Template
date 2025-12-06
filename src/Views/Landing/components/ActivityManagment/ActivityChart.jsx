@@ -50,7 +50,7 @@ export default function ActivityManagementDashboard() {
       tick={{ fontSize: 10 }}
       tickMargin={6}
       height={40}
-      angle={-15}
+      angle={0}
       textAnchor="end"
     />
     <YAxis tick={{ fontSize: 10 }} />
