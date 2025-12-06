@@ -40,7 +40,7 @@ const PIE_COLORS = ["#6366F1", "#3B82F6", "#10B981", "#F59E0B", "#EF4444"];
 
 export default function DepartmentPerformance() {
   return (
-    <Card className="bg-white rounded-2xl shadow p-2">
+    <Card className="bg-white rounded-2xl shadow p-3">
       <CardContent>
         <Typography>
           Requisition Submit
@@ -48,7 +48,7 @@ export default function DepartmentPerformance() {
 
         <Box className="flex flex-col lg:flex-row gap-6">
           {/* Line Chart */}
-          <Box className="flex-1 h-64">
+          <Box className="flex-1 h-67">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart
                 data={lineData}

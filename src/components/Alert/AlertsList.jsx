@@ -11,10 +11,10 @@ const alerts = [
   { id: 7, label: "Attendance Issues", count: 4, severity: "error" },
   { id: 8, label: "Financial Overspend", count: 2, severity: "error" },
   { id: 9, label: "Procurement Pending Approval", count: 6, severity: "warning" },
-  { id: 10, label: "Budget Utilization Breach", count: 3, severity: "error" },
+  
 ];
 
-// ---------- Dashboard Component ---------- //
+
 export default function AlertsList() {
   return (
     <Box className="space-y-6">

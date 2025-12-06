@@ -325,21 +325,21 @@ export default function InventoryFixedCards() {
             key={i}
             elevation={1}
             sx={{
-              p: 1,
+              p: 2,
               borderRadius: 2,
               backgroundColor: "#FFFFFF",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               textAlign: "center",
-              minHeight: 120,
-              height: item.sub.length > 3 ? 160 : 128,
+             // minHeight: 120,
+              //height: item.sub.length > 3 ? 160 : 128,
               overflow: "hidden",
             }}
           >
             {/* Header */}
             <Box sx={{ mb: 0.5 }}>
-              <Box sx={{ color: "#2563EB", mb: 0.25 }}>{item.icon}</Box>
+              <Box sx={{ color: "#2563EB", mb: 1 }}>{item.icon}</Box>
               <Typography
                 variant="caption"
                 sx={{ fontWeight: 600, fontSize: "9px" }}
@@ -372,7 +372,7 @@ export default function InventoryFixedCards() {
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
-                    py: 0.25,
+                    py: 0.30,
                   }}
                 >
                   <Typography

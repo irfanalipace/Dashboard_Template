@@ -22,7 +22,7 @@ export default function TopStationsTable({ data }) {
 
       <Typography
 
-        //sx={{ color: "#4a5971", mb: 2, fontWeight: 700 }}
+        sx={{ color: "#4a5971", mb: 2, fontWeight: 700 }}
       >
         Top 5 Performing Stations
       </Typography>
@@ -30,10 +30,10 @@ export default function TopStationsTable({ data }) {
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="text-xs text-gray-500 border-b border-gray-200">
-            <th className="py-3 text-left">Rank</th>
-            <th className="py-3 text-left">Station</th>
-            <th className="py-3 text-left">Performance</th>
-            <th className="py-3 text-right">Score</th>
+            <th className=" text-left">Rank</th>
+            <th className=" text-left">Station</th>
+            <th className=" text-left">Performance</th>
+            <th className=" text-right">Score</th>
           </tr>
         </thead>
 
@@ -61,7 +61,7 @@ export default function TopStationsTable({ data }) {
               </td>
 
 
-              <td className="py-3 text-right font-semibold" style={{ color: getBarColor(i) }}>
+              <td className="py-1 text-right font-semibold" style={{ color: getBarColor(i) }}>
                 {row.score}
               </td>
             </tr>

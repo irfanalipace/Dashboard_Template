@@ -45,7 +45,7 @@ const kpisData = [
   { id: 3, label: "Human Resource", value: 4000, type: "hr", url: "hr" },
   { id: 4, label: "FIR", value: 210, type: "fir", url: "fir" },
   { id: 5, label: "Inventory", value: 18, type: "ims", url: "inventory" },
-{ id: 6, label: "Financial", value: "421B", type: "TF", url: "financial" },
+  { id: 6, label: "Financial", value: "421B", type: "TF", url: "financial" },
 
   { id: 7, label: "Vehicles", value: 1000, type: "tv", url: "vehicles" },
   { id: 8, label: "Tenders", value: 38, type: "TT", url: "tenders" },
@@ -83,9 +83,76 @@ export default function ExecutiveDashboard() {
 
   if (loader) return <Loader />;
   return (
+    // <div className="space-y-6 bg-[#F9FAFB]">
+
+
+    //   <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+    //     {kpisData.map(k => (
+    //       <KPICard
+    //         key={k.id}
+    //         label={k.label}
+    //         value={k.value}
+    //         type={k.type}
+    //         isSelected={selectedId === k.id}
+    //         onClick={() => {
+    //           setSelectedId(k.id);
+    //           navigate(`/dashboard/${k.url}`);
+    //         }}
+    //       />
+    //     ))}
+    //   </div>
+
+
+
+    //   <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+    //     {/* Left Card: Field Staff Deployment */}
+    //     <div className="md:col-span-6">
+    //       <FieldStaffDeploymentCard />
+    //     </div>
+
+    //     {/* Right Card: Inventory & Assets */}
+    //     <div className="md:col-span-6">
+    //       <InventoryAssetsCard />
+    //     </div>
+    //   </div>
+
+
+    //   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
+    //     <div className="lg:col-span-12">
+    //       <ChallanFir />
+    //     </div>
+    //   </div>
+
+
+    //   <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+    //     <div className="md:col-span-12 col-span-1 h-[400px]">
+    //       <MapCard />
+    //     </div>
+    //   </div>
+
+
+    //   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+    //     <HRMISChart />
+    //     <ActivityChart />
+    //   </div>
+
+    //   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+    //     <TopStationsTable data={topStations} />
+    //     <SalesOverTime />
+    //   </div>
+    //   <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4">
+
+    //     <FinanceChart />
+
+    //     <div className="bg-white rounded-xl shadow p-4">
+    //       <AlertsList items={alerts} />
+    //     </div>
+    //   </div>
+
+    // </div>
     <div className="space-y-6 bg-[#F9FAFB]">
 
-
+      {/* KPI Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
         {kpisData.map(k => (
           <KPICard
@@ -102,57 +169,61 @@ export default function ExecutiveDashboard() {
         ))}
       </div>
 
-
-
+      {/* Field Staff + Inventory */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-  {/* Left Card: Field Staff Deployment */}
-  <div className="md:col-span-6">
-    <FieldStaffDeploymentCard />
-  </div>
+        <div className="md:col-span-6">
+          <FieldStaffDeploymentCard />
+        </div>
+        <div className="md:col-span-6">
+          <InventoryAssetsCard />
+        </div>
+      </div>
 
-  {/* Right Card: Inventory & Assets */}
-  <div className="md:col-span-6">
-    <InventoryAssetsCard />
-  </div>
-</div>
+      {/* Challan + FIR combined chart full width */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-6">
+        <div className="md:col-span-12">
+          <ChallanFir />
+        </div>
+      </div>
 
-
-<div className="grid grid-cols-1 lg:grid-cols-1 gap-6 mt-6">
-  <ChallanFir />
-</div>
-
-  <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-        <div className="md:col-span-12 col-span-1 h-[400px]">
+      {/* Map full width */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div className="md:col-span-12 h-[400px]">
           <MapCard />
         </div>
       </div>
 
-    
-  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-   <HRMISChart />
-     <ActivityChart />
-</div>
-    
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <TopStationsTable data={topStations} />
-        <SalesOverTime />
+      {/* HRMIS + Activity side by side */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div className="md:col-span-6">
+          <HRMISChart />
+        </div>
+        <div className="md:col-span-6">
+          <ActivityChart />
+        </div>
       </div>
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4">
-     
-        <FinanceChart />
-      
-    <div className="bg-white rounded-xl shadow p-4">
+
+      {/* Top Stations + Sales Over Time */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-6">
+        <div className="md:col-span-6">
+          <TopStationsTable data={topStations} />
+        </div>
+        <div className="md:col-span-6">
+          <SalesOverTime />
+        </div>
+      </div>
+
+      {/* Finance + Alerts */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mt-4">
+        <div className="md:col-span-6">
+          <FinanceChart />
+        </div>
+        <div className="md:col-span-6 bg-white rounded-xl shadow p-4">
           <AlertsList items={alerts} />
         </div>
       </div>
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 ">
 
-
-        <ChartCard title="Requisition Source Tracking">
-          <BeautifulDonutChart data={donutData} />
-        </ChartCard>
-
-      </div> */}
     </div>
+
   );
 }

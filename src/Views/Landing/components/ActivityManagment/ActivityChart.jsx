@@ -42,32 +42,32 @@ export default function ActivityManagementDashboard() {
         <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
           {/* Line Chart */}
           <Box sx={{ height: 180 }}>
-           <ResponsiveContainer width="100%" height="100%">
-  <LineChart data={departmentData}>
-    <XAxis
-      dataKey="name"
-      interval={0}
-      tick={{ fontSize: 10 }}
-      tickMargin={6}
-      height={40}
-      angle={0}
-      textAnchor="end"
-    />
-    <YAxis tick={{ fontSize: 10 }} />
-    <Tooltip contentStyle={{ fontSize: "10px" }} />
-    <Legend wrapperStyle={{ fontSize: 10 }} />
-    <Line type="monotone" dataKey="completed" stroke="#3b82f6" strokeWidth={2} dot={false} />
-    <Line type="monotone" dataKey="pending" stroke="#10b981" strokeWidth={2} dot={false} />
-    <Line type="monotone" dataKey="inProgress" stroke="#f59e0b" strokeWidth={2} dot={false} />
-    <Line type="monotone" dataKey="delayed" stroke="#ef4444" strokeWidth={2} dot={false} />
-    <Line type="monotone" dataKey="perDay" stroke="#8b5cf6" strokeWidth={2} dot={false} />
-  </LineChart>
-</ResponsiveContainer>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={departmentData}>
+                <XAxis
+                  dataKey="name"
+                  interval={0}
+                  tick={{ fontSize: 10 }}
+                  tickMargin={6}
+                  height={40}
+                  angle={0}
+                  textAnchor="end"
+                />
+                <YAxis tick={{ fontSize: 10 }} />
+                <Tooltip contentStyle={{ fontSize: "10px" }} />
+                <Legend wrapperStyle={{ fontSize: 10 }} />
+                <Line type="monotone" dataKey="completed" stroke="#3b82f6" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="pending" stroke="#10b981" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="inProgress" stroke="#f59e0b" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="delayed" stroke="#ef4444" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="perDay" stroke="#8b5cf6" strokeWidth={2} dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
 
           </Box>
 
           {/* Pie Chart */}
-          <Box sx={{ height: 150, position: "relative" }}>
+          <Box sx={{ height: 137, position: "relative" }}>
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -79,7 +79,7 @@ export default function ActivityManagementDashboard() {
                   fontSize={11}
                   outerRadius="60%"
                   label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
-                 // labelStyle={{ fontSize: 9 }}
+                // labelStyle={{ fontSize: 9 }}
                 >
                   {departmentData.map((entry, index) => (
                     <Cell key={index} fill={COLORS[index % COLORS.length]} />
@@ -88,7 +88,7 @@ export default function ActivityManagementDashboard() {
                 <Legend wrapperStyle={{ fontSize: 10 }} />
               </PieChart>
             </ResponsiveContainer>
-        
+
           </Box>
         </Box>
       </CardContent>
